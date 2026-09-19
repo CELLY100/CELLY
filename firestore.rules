@@ -1,0 +1,25 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Public read for beats in store, writes for catalog updates
+    match /beats/{beatId} {
+      allow read: if true;
+      allow write: if true;
+    }
+    
+    // Persistent assets (audio, artwork, stems)
+    match /beat_assets/{assetId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    // Connection health check
+    match /test/{docId} {
+      allow read: if true;
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

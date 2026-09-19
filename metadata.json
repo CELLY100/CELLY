@@ -1,0 +1,8 @@
+{
+  "name": "CELLY - Beats & Professional Mastering",
+  "description": "Official website for CELLY. Producer beat store, custom beat uploads, instant dynamic license agreements, and professional stereo audio mastering.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

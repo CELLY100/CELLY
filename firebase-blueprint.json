@@ -1,0 +1,65 @@
+{
+  "entities": {
+    "Beat": {
+      "title": "Beat",
+      "description": "Producer beat track with audio, artwork, metadata, and license tiers",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "slug": { "type": "string" },
+        "title": { "type": "string" },
+        "producer": { "type": "string" },
+        "bpm": { "type": "number" },
+        "key": { "type": "string" },
+        "genre": { "type": "string" },
+        "mood": { "type": "string" },
+        "description": { "type": "string" },
+        "tags": { "type": "string" },
+        "artworkUrl": { "type": "string" },
+        "previewUrl": { "type": "string" },
+        "audioDataUrl": { "type": "string" },
+        "duration": { "type": "number" },
+        "plays": { "type": "number" },
+        "views": { "type": "number" },
+        "status": { "type": "string", "enum": ["draft", "published", "scheduled", "exclusive_sold"] },
+        "isFeatured": { "type": "boolean" },
+        "isNewRelease": { "type": "boolean" },
+        "basePrice": { "type": "number" },
+        "hasMp3": { "type": "boolean" },
+        "hasWav": { "type": "boolean" },
+        "hasStems": { "type": "boolean" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "title", "status"]
+    },
+    "BeatAsset": {
+      "title": "BeatAsset",
+      "description": "Uploaded audio asset or artwork chunk associated with a beat",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "beatId": { "type": "string" },
+        "assetType": { "type": "string" },
+        "fileName": { "type": "string" },
+        "mimeType": { "type": "string" },
+        "data": { "type": "string" },
+        "chunkIndex": { "type": "number" },
+        "totalChunks": { "type": "number" },
+        "sizeBytes": { "type": "number" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "beatId", "assetType", "data"]
+    }
+  },
+  "firestore": {
+    "/beats/{beatId}": {
+      "schema": "Beat",
+      "description": "Persistent beat catalog for CELLY beats"
+    },
+    "/beat_assets/{assetId}": {
+      "schema": "BeatAsset",
+      "description": "Persistent audio chunks and artwork assets for beats"
+    }
+  }
+}
